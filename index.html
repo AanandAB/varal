@@ -773,7 +773,7 @@
     } else go(base);
   });
 
-  function go(msg){window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`,'_blank')}
+  function go(msg){window.location.href = `https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`;}
 
   </script>
 </body>
