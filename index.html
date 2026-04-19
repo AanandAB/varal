@@ -39,7 +39,7 @@
       --radius:20px;
       --radius-sm:14px;
     }
-    html{scroll-behavior:smooth; -webkit-tap-highlight-color: transparent;}
+    html{ -webkit-tap-highlight-color: transparent; }
     body{
       font-family:var(--ff-body); background:var(--bg-primary); color:var(--text-primary);
       overflow-x:hidden; line-height:1.7; -webkit-font-smoothing:antialiased;
@@ -632,10 +632,38 @@
     <div class="f-bottom"><span>© 2026 Kerala Live Varal</span><span>Made in Kerala</span></div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
   <script>
   /* ══════ CONFIG ══════ */
   const WA_NUM = '91XXXXXXXXXX';
   const PRICE = 120;
+
+  /* ══════ LENIS SMOOTH SCROLL ══════ */
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+    smoothTouch: false
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Wire up anchor links to Lenis
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = this.getAttribute('href');
+      if(target && target !== '#') {
+        lenis.scrollTo(target, { offset: -64 }); // offset for nav height
+      }
+    });
+  });
 
   /* ══════ STATE ══════ */
   let qty = 1, lastSy = 0;
