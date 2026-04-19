@@ -207,7 +207,7 @@
     .sep{text-align:center;padding:.8rem 0;color:var(--coral);opacity:.12;font-size:.9rem;letter-spacing:1.5rem}
 
     /* ABOUT */
-    #about{background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary))}
+    #about{background:linear-gradient(180deg,rgba(8,14,10,0.2),rgba(12,26,16,0.6));}
     .about-grid{ display:grid;grid-template-columns:1fr 1fr; gap:clamp(2.5rem,6vw,5rem);align-items:center; max-width:var(--max-w);margin:0 auto; }
     .about-img {
       border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border);
@@ -238,7 +238,7 @@
     @media(max-width:900px){.about-grid{grid-template-columns:1fr} .about-img{aspect-ratio:16/10; order:-1;}}
 
     /* FEATURES */
-    #features{background:var(--bg-secondary)}
+    #features{background:rgba(12,26,16,0.6);}
     .feat-grid{ display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;max-width:var(--max-w);margin:0 auto; }
     .feat{
       background:var(--bg-card);border:1px solid var(--border); border-radius:var(--radius);padding:2.2rem 2rem;
@@ -260,7 +260,7 @@
     .feat p{color:var(--text-secondary);font-size:.95rem;line-height:1.7}
 
     /* STEPS */
-    #steps{background:linear-gradient(180deg,var(--bg-secondary),var(--bg-primary))}
+    #steps{background:linear-gradient(180deg,rgba(12,26,16,0.6),rgba(8,14,10,0.5));}
     .steps-box{max-width:700px;margin:0 auto;position:relative}
     .steps-rail{position:absolute;left:28px;top:0;width:2px;height:100%;background:rgba(255,255,255,.05)}
     .steps-fill{width:100%;height:0%;background:linear-gradient(180deg,var(--coral),var(--emerald));border-radius:2px;transition:height .6s var(--ease-smooth)}
@@ -276,7 +276,7 @@
     .stp-body p{color:var(--text-secondary);font-size:.98rem;line-height:1.7}
 
     /* GALLERY BENTO */
-    #gallery{background:var(--bg-primary)}
+    #gallery{background:rgba(8,14,10,0.5);}
     .bento{
       display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:260px;
       gap:1.5rem;max-width:var(--max-w);margin:0 auto;
@@ -316,7 +316,7 @@
     @media(max-width:600px){ .bento{grid-template-columns:1fr; grid-auto-rows:230px;} }
 
     /* ORDER */
-    #order{background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary))}
+    #order{background:linear-gradient(180deg,rgba(8,14,10,0.5),rgba(12,26,16,0.7));}
     .order-box{max-width:540px;margin:0 auto;text-align:center}
     .order-card{
       background:var(--bg-card);border:1px solid var(--border);
@@ -380,7 +380,7 @@
 
     /* FOOTER */
     footer{
-      background:rgba(8,14,10,.98);border-top:1px solid var(--border);
+      background:rgba(8,14,10,.85);border-top:1px solid var(--border);
       padding:clamp(4rem,8vw,6rem) var(--section-px) 2rem;
     }
     .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:clamp(2.5rem,5vw,4rem);max-width:var(--max-w);margin:0 auto}
@@ -402,7 +402,7 @@
   </style>
 </head>
 <body>
-  <video id="bgVideo" src="bg-video.mp4" muted playsinline preload="auto" style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0.35;pointer-events:none;"></video>
+  <video id="bgVideo" src="bg-video.mp4" autoplay loop muted playsinline style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0.4;pointer-events:none;"></video>
   <div class="ambient"></div>
 
   <!-- NAV -->
@@ -735,35 +735,6 @@
   document.getElementById('ham').addEventListener('click', () => mm.classList.add('open'));
   document.getElementById('mobClose').addEventListener('click', () => mm.classList.remove('open'));
   document.querySelectorAll('#mobMenu a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
-
-  /* ══════════════════════════════════════════════
-     VIDEO SCROLL SCRUBBING
-  ══════════════════════════════════════════════ */
-  const bgVid = document.getElementById('bgVideo');
-  let targetTime = 0;
-  let currVidTime = 0;
-
-  // Wait for metadata to know duration
-  bgVid.addEventListener('loadedmetadata', () => {
-    bgVid.pause(); // Just in case, ensure it's not playing normally
-    function scrubLoop() {
-      // Find the scroll fraction
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const frac = maxScroll > 0 ? (window.scrollY / maxScroll) : 0;
-      targetTime = frac * bgVid.duration;
-
-      // Easing function for smoothness
-      currVidTime += (targetTime - currVidTime) * 0.08;
-
-      // To avoid choppy updates on some devices, only set if difference is notable
-      if (Math.abs(bgVid.currentTime - currVidTime) > 0.005) {
-        bgVid.currentTime = currVidTime;
-      }
-      
-      requestAnimationFrame(scrubLoop);
-    }
-    requestAnimationFrame(scrubLoop);
-  });
 
   /* ══════════════════════════════════════════════
      WHATSAPP ORDER
