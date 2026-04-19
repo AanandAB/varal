@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Kerala Live Varal — വരാൽ | Farm-Raised Snakehead Fish</title>
+  <meta name="description" content="Order live Varal (Snakehead) fish — farm-raised in Kerala's clean waters. ₹120 per piece, delivered alive via WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+    :root{
+      /* ── PALETTE: Deep Forest + Red + Green ── */
+      --bg-primary:#080e0a;
+      --bg-secondary:#0c1a10;
+      --bg-tertiary:#122318;
+      --bg-card:rgba(12,26,16,0.65);
+      --bg-card-hover:rgba(18,35,24,0.75);
+      --border:rgba(80,160,100,0.08);
+      --border-hover:rgba(229,62,62,0.25);
+
+      --coral:#e53e3e;
+      --coral-glow:rgba(229,62,62,0.2);
+      --coral-soft:#fc5c5c;
+      --cyan:#22c55e;
+      --cyan-glow:rgba(34,197,94,0.15);
+      --emerald:#22c55e;
+      --amber:#f59e0b;
+
+      --text-primary:#f0f7f2;
+      --text-secondary:#8aaa96;
+      --text-muted:#5a7a68;
+
+      /* ── Typography ── */
+      --ff-display:'Playfair Display',Georgia,serif;
+      --ff-heading:'Space Grotesk','Inter',sans-serif;
+      --ff-body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+      --ff-mono:'JetBrains Mono','Courier New',monospace;
+      --ff-ml:'Noto Sans Malayalam',sans-serif;
+
+      /* ── Easings ── */
+      --ease-out:cubic-bezier(.16,1,.3,1);
+      --ease-spring:cubic-bezier(.34,1.56,.64,1);
+      --ease-smooth:cubic-bezier(.4,0,.2,1);
+
+      /* ── Layout ── */
+      --max-w:1160px;
+      --section-px:clamp(1.2rem,5vw,5%);
+      --section-py:clamp(5rem,12vw,9rem);
+      --radius:20px;
+      --radius-sm:12px;
+    }
+
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--ff-body);
+      background:var(--bg-primary);
+      color:var(--text-primary);
+      overflow-x:hidden;
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ═══════════  AMBIENT BACKGROUND  ═══════════ */
+    .ambient{
+      position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:
+        radial-gradient(ellipse 50% 40% at 15% 85%, rgba(34,197,94,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 35% at 85% 15%, rgba(229,62,62,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(34,197,94,0.03) 0%, transparent 60%);
+    }
+    /* Grain */
+    body::after{
+      content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
+      opacity:.03;mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:128px;
+    }
+
+    /* ═══════════  CURSOR (desktop)  ═══════════ */
+    @media(hover:hover)and(pointer:fine){
+      body{cursor:none}
+      a,button{cursor:none}
+      #cRing{
+        position:fixed;width:42px;height:42px;
+        border:1.5px solid var(--coral);border-radius:50%;
+        pointer-events:none;z-index:10000;
+        transform:translate(-50%,-50%);
+        transition:width .3s var(--ease-spring),height .3s var(--ease-spring),
+                   border-color .25s,background .25s;
+        will-change:transform;
+      }
+      #cDot{
+        position:fixed;width:5px;height:5px;
+        background:var(--coral);border-radius:50%;
+        pointer-events:none;z-index:10001;
+        transform:translate(-50%,-50%);
+        will-change:transform;
+      }
+      #cRing.big{width:64px;height:64px;border-color:var(--cyan);background:rgba(34,197,94,.05)}
+    }
+    @media(hover:none){#cRing,#cDot{display:none!important}}
+
+    /* ═══════════  RIPPLE FX  ═══════════ */
+    .ripple{
+      position:fixed;border-radius:50%;
+      border:1.5px solid rgba(229,62,62,.45);
+      pointer-events:none;z-index:9999;
+      animation:rip .85s var(--ease-out) forwards;
+    }
+    @keyframes rip{
+      0%{width:0;height:0;opacity:.6;transform:translate(-50%,-50%)}
+      100%{width:160px;height:160px;opacity:0;transform:translate(-50%,-50%)}
+    }
+
+    /* ═══════════  LOADER  ═══════════ */
+    #loader{
+      position:fixed;inset:0;z-index:10002;
+      background:var(--bg-primary);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      transition:opacity .8s ease,visibility .8s;
+    }
+    #loader.done{opacity:0;visibility:hidden;pointer-events:none}
+    .ld-icon{font-size:3rem;animation:ldSwim 1.4s ease-in-out infinite}
+    @keyframes ldSwim{
+      0%{transform:translateX(-30px) rotate(-4deg)}
+      50%{transform:translateX(30px) rotate(4deg) scaleX(-1)}
+      100%{transform:translateX(-30px) rotate(-4deg)}
+    }
+    .ld-text{
+      font-family:var(--ff-mono);font-size:.72rem;color:var(--text-muted);
+      letter-spacing:.18em;text-transform:uppercase;margin-top:1.8rem;
+    }
+    .ld-bar{width:200px;height:2px;background:rgba(255,255,255,.04);border-radius:2px;margin-top:.8rem;overflow:hidden}
+    .ld-fill{width:0%;height:100%;background:linear-gradient(90deg,var(--coral),var(--emerald));border-radius:2px;transition:width .35s}
+
+    /* ═══════════  NAV  ═══════════ */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      height:60px;padding:0 var(--section-px);
+      display:flex;align-items:center;justify-content:space-between;
+      backdrop-filter:blur(20px) saturate(1.3);
+      -webkit-backdrop-filter:blur(20px) saturate(1.3);
+      background:rgba(8,14,10,.55);
+      border-bottom:1px solid var(--border);
+      transform:translateY(0);
+      transition:transform .45s var(--ease-out),background .3s;
+    }
+    nav.hide{transform:translateY(-100%)}
+    nav.solid{background:rgba(8,14,10,.88)}
+    .n-brand{
+      font-family:var(--ff-heading);font-weight:800;font-size:1.15rem;
+      color:var(--coral);text-decoration:none;
+      display:flex;align-items:baseline;gap:.4rem;
+    }
+    .n-brand .ml{font-family:var(--ff-ml);font-size:.65em;color:var(--text-secondary);font-weight:600}
+    .n-links{display:flex;gap:1.8rem;list-style:none}
+    .n-links a{
+      color:var(--text-secondary);text-decoration:none;
+      font-size:.85rem;font-weight:500;letter-spacing:.01em;
+      position:relative;transition:color .25s;
+    }
+    .n-links a::after{
+      content:'';position:absolute;bottom:-3px;left:0;
+      width:0;height:1.5px;background:var(--coral);
+      transition:width .3s var(--ease-out);
+    }
+    .n-links a:hover{color:var(--text-primary)}
+    .n-links a:hover::after{width:100%}
+    .n-cta{
+      padding:.5rem 1.3rem;
+      background:linear-gradient(135deg,var(--coral),var(--coral-soft));
+      color:#fff;font-weight:700;font-size:.78rem;
+      border:none;border-radius:100px;text-decoration:none;
+      letter-spacing:.03em;
+      transition:transform .3s var(--ease-spring),box-shadow .3s;
+    }
+    .n-cta:hover{transform:scale(1.06);box-shadow:0 6px 24px var(--coral-glow)}
+    .n-ham{display:none;background:none;border:none;color:var(--text-primary);font-size:1.5rem;padding:.2rem}
+
+    @media(max-width:768px){
+      .n-links,.n-cta{display:none}
+      .n-ham{display:block}
+    }
+
+    /* Mobile overlay menu */
+    .mob-menu{
+      position:fixed;inset:0;z-index:999;
+      background:rgba(8,14,10,.97);
+      backdrop-filter:blur(24px);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;
+      opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;
+    }
+    .mob-menu.open{opacity:1;visibility:visible}
+    .mob-menu a{
+      font-family:var(--ff-heading);font-size:1.6rem;font-weight:600;
+      color:var(--text-primary);text-decoration:none;
+      opacity:0;transform:translateY(16px);
+      transition:opacity .4s,transform .4s var(--ease-out),color .25s;
+    }
+    .mob-menu.open a{opacity:1;transform:translateY(0)}
+    .mob-menu.open a:nth-child(2){transition-delay:.05s}
+    .mob-menu.open a:nth-child(3){transition-delay:.1s}
+    .mob-menu.open a:nth-child(4){transition-delay:.15s}
+    .mob-menu.open a:nth-child(5){transition-delay:.2s}
+    .mob-menu.open a:nth-child(6){transition-delay:.25s}
+    .mob-menu a:hover{color:var(--coral)}
+    .mob-close{
+      position:absolute;top:1rem;right:1.2rem;
+      font-size:1.8rem;color:var(--text-primary);
+      background:none;border:none;
+    }
+
+    /* ═══════════  HERO  ═══════════ */
+    #hero{
+      position:relative;width:100%;
+      height:100vh;height:100dvh;min-height:550px;
+      overflow:hidden;display:flex;align-items:flex-end;
+    }
+    #fishCanvas{position:absolute;inset:0;z-index:1;width:100%;height:100%}
+    .hero-grad{
+      position:absolute;inset:0;z-index:2;pointer-events:none;
+      background:linear-gradient(180deg,
+        rgba(8,14,10,.15) 0%,rgba(8,14,10,0) 25%,
+        rgba(8,14,10,.35) 65%,var(--bg-primary) 100%);
+    }
+    .hero-vig{
+      position:absolute;inset:0;z-index:2;pointer-events:none;
+      background:radial-gradient(ellipse 65% 65% at 50% 45%,transparent,rgba(8,14,10,.55));
+    }
+    .hero-inner{
+      position:relative;z-index:3;
+      padding:0 var(--section-px) clamp(2.5rem,7vh,5rem);
+      max-width:720px;
+    }
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:.45rem;
+      padding:.35rem .9rem;
+      background:rgba(229,62,62,.06);
+      border:1px solid rgba(229,62,62,.18);
+      border-radius:100px;
+      font-family:var(--ff-mono);font-size:.65rem;
+      color:var(--coral);letter-spacing:.14em;text-transform:uppercase;
+      margin-bottom:1rem;
+      opacity:0;transform:translateY(18px);
+      animation:hIn .8s .2s var(--ease-out) forwards;
+    }
+    .hero-badge .pulse{
+      width:6px;height:6px;background:var(--emerald);border-radius:50%;
+      animation:pDot 2s ease-in-out infinite;
+    }
+    @keyframes pDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+
+    .hero-h1{
+      font-family:var(--ff-display);font-weight:900;
+      font-size:clamp(2.8rem,7.5vw,5.2rem);line-height:1;
+      opacity:0;transform:translateY(28px);
+      animation:hIn .9s .35s var(--ease-out) forwards;
+    }
+    .hero-h1 .accent{
+      background:linear-gradient(135deg,var(--coral),var(--emerald));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero-h1 .ml{
+      display:block;font-family:var(--ff-ml);font-weight:700;
+      font-size:.35em;color:var(--cyan);margin-top:.5rem;
+      -webkit-text-fill-color:var(--cyan);
+    }
+    .hero-p{
+      font-size:clamp(.92rem,1.6vw,1.1rem);color:var(--text-secondary);
+      max-width:500px;margin-top:1rem;
+      opacity:0;transform:translateY(18px);
+      animation:hIn .8s .55s var(--ease-out) forwards;
+    }
+    .hero-btns{
+      display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem;
+      opacity:0;transform:translateY(18px);
+      animation:hIn .8s .7s var(--ease-out) forwards;
+    }
+    @keyframes hIn{to{opacity:1;transform:translateY(0)}}
+
+    .btn-coral{
+      padding:.8rem 1.8rem;
+      background:linear-gradient(135deg,var(--coral),var(--coral-soft));
+      color:#fff;font-weight:700;font-size:.88rem;
+      border:none;border-radius:100px;text-decoration:none;
+      display:inline-flex;align-items:center;gap:.4rem;
+      transition:transform .3s var(--ease-spring),box-shadow .3s;
+    }
+    .btn-coral:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 10px 32px var(--coral-glow)}
+    .btn-ghost{
+      padding:.8rem 1.8rem;
+      background:transparent;color:var(--text-primary);
+      font-weight:500;font-size:.88rem;
+      border:1.5px solid var(--border);border-radius:100px;text-decoration:none;
+      transition:border-color .25s,background .25s;
+    }
+    .btn-ghost:hover{border-color:var(--coral);background:rgba(229,62,62,.04)}
+
+    .scroll-cue{
+      position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);
+      z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;
+      opacity:0;animation:hIn .7s 1.2s var(--ease-out) forwards;
+    }
+    .scroll-cue .pill{
+      width:20px;height:32px;border:1.5px solid var(--text-muted);border-radius:12px;position:relative;
+    }
+    .scroll-cue .pill::after{
+      content:'';position:absolute;top:5px;left:50%;
+      width:3px;height:6px;background:var(--coral);border-radius:3px;
+      transform:translateX(-50%);animation:sDot 2s ease-in-out infinite;
+    }
+    @keyframes sDot{0%,100%{transform:translateX(-50%) translateY(0);opacity:1}60%{transform:translateX(-50%) translateY(10px);opacity:0}}
+    .scroll-cue span{font-family:var(--ff-mono);font-size:.58rem;color:var(--text-muted);letter-spacing:.18em;text-transform:uppercase}
+
+    /* ═══════════  SECTIONS SHARED  ═══════════ */
+    section{padding:var(--section-py) var(--section-px);position:relative}
+    .sec-head{text-align:center;max-width:620px;margin:0 auto 3rem}
+    .sec-tag{
+      display:inline-block;font-family:var(--ff-mono);font-size:.65rem;
+      color:var(--coral);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem;
+    }
+    .sec-title{font-family:var(--ff-display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.15}
+    .sec-title .accent{
+      background:linear-gradient(135deg,var(--coral),var(--emerald));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .sec-sub{color:var(--text-secondary);font-size:.95rem;margin-top:.7rem;max-width:480px;margin-left:auto;margin-right:auto}
+
+    /* Reveal */
+    .rv{opacity:0;transform:translateY(45px);transition:opacity .85s var(--ease-out),transform .85s var(--ease-out)}
+    .rv.left{transform:translateX(-40px)}
+    .rv.right{transform:translateX(40px)}
+    .rv.up-scale{transform:translateY(30px) scale(.96)}
+    .rv.vis{opacity:1;transform:none}
+
+    /* Divider */
+    .sep{text-align:center;padding:.6rem 0;color:var(--coral);opacity:.12;font-size:.9rem;letter-spacing:1.5rem}
+
+    /* ═══════════  ABOUT  ═══════════ */
+    #about{background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary))}
+    .about-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:clamp(2rem,5vw,4rem);align-items:center;
+      max-width:var(--max-w);margin:0 auto;
+    }
+    .about-text .sec-tag,.about-text .sec-title{text-align:left}
+    .about-text p{color:var(--text-secondary);margin-bottom:1rem;font-size:.98rem}
+    .about-text p strong{color:var(--text-primary)}
+    .ml-quote{
+      font-family:var(--ff-ml);font-size:1.2rem;line-height:2;color:var(--cyan);
+      border-left:3px solid var(--coral);padding-left:1rem;margin:1.5rem 0;
+    }
+    .ml-quote small{display:block;font-family:var(--ff-body);font-size:.72rem;color:var(--text-muted);margin-top:.2rem;font-style:italic}
+
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .stat{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);padding:1.6rem 1rem;text-align:center;
+      backdrop-filter:blur(10px);
+      transition:transform .4s var(--ease-spring),border-color .3s,box-shadow .3s;
+    }
+    .stat:hover{transform:translateY(-4px);border-color:var(--border-hover);box-shadow:0 8px 28px rgba(0,0,0,.2)}
+    .stat-n{font-family:var(--ff-heading);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:800;color:var(--coral);line-height:1}
+    .stat-l{font-family:var(--ff-mono);font-size:.62rem;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;margin-top:.4rem}
+
+    @media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+
+    /* ═══════════  FEATURES  ═══════════ */
+    #features{background:var(--bg-secondary)}
+    .feat-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1.2rem;max-width:var(--max-w);margin:0 auto;
+    }
+    .feat{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);padding:2rem 1.6rem;
+      backdrop-filter:blur(10px);position:relative;overflow:hidden;
+      transition:transform .45s var(--ease-spring),border-color .3s,box-shadow .4s;
+    }
+    .feat::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(229,62,62,.06),transparent 60%);
+      opacity:0;transition:opacity .35s;pointer-events:none;
+    }
+    .feat:hover{transform:translateY(-5px);border-color:var(--border-hover);box-shadow:0 16px 44px rgba(0,0,0,.25)}
+    .feat:hover::before{opacity:1}
+    .feat-ico{
+      width:44px;height:44px;border-radius:12px;
+      background:rgba(34,197,94,.06);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.3rem;margin-bottom:1rem;
+    }
+    .feat h3{font-family:var(--ff-heading);font-size:1.1rem;font-weight:700;margin-bottom:.4rem}
+    .feat p{color:var(--text-secondary);font-size:.88rem;line-height:1.7}
+
+    /* ═══════════  STEPS  ═══════════ */
+    #steps{background:linear-gradient(180deg,var(--bg-secondary),var(--bg-primary))}
+    .steps-box{max-width:700px;margin:2rem auto 0;position:relative}
+    .steps-rail{position:absolute;left:24px;top:0;width:2px;height:100%;background:rgba(255,255,255,.03)}
+    .steps-fill{width:100%;height:0%;background:linear-gradient(180deg,var(--coral),var(--emerald));border-radius:2px;transition:height .5s var(--ease-smooth)}
+    .stp{display:flex;gap:1.6rem;padding:1.6rem 0;position:relative}
+    .stp-n{
+      width:50px;height:50px;border-radius:50%;flex-shrink:0;
+      background:var(--bg-card);border:2px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--ff-heading);font-weight:800;font-size:1.1rem;color:var(--coral);
+      z-index:1;transition:all .4s var(--ease-spring);
+    }
+    .stp.on .stp-n{background:var(--coral);color:#fff;border-color:var(--coral);transform:scale(1.08);box-shadow:0 4px 16px var(--coral-glow)}
+    .stp-body h3{font-family:var(--ff-heading);font-size:1.15rem;font-weight:700;margin-bottom:.2rem}
+    .stp-body p{color:var(--text-secondary);font-size:.9rem}
+
+    /* ═══════════  GALLERY BENTO  ═══════════ */
+    #gallery{background:var(--bg-primary)}
+    .bento{
+      display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:180px;
+      gap:1rem;max-width:var(--max-w);margin:0 auto;
+    }
+    .bento-item{
+      border-radius:var(--radius);background:var(--bg-card);
+      border:1px solid var(--border);overflow:hidden;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:1.5rem 1rem;position:relative;
+      transition:transform .45s var(--ease-spring),border-color .3s,box-shadow .4s;
+      backdrop-filter:blur(8px);
+    }
+    .bento-item:hover{transform:scale(1.04);border-color:var(--border-hover);box-shadow:0 14px 40px rgba(0,0,0,.3)}
+    .bento-item.w2{grid-column:span 2}
+    .bento-item.h2{grid-row:span 2}
+    .bento-item .emoji{font-size:2.5rem;margin-bottom:.6rem;transition:transform .4s var(--ease-spring)}
+    .bento-item:hover .emoji{transform:scale(1.25) rotate(-6deg)}
+    .bento-item h4{font-family:var(--ff-heading);font-size:.95rem;font-weight:700}
+    .bento-item p{font-size:.72rem;color:var(--text-muted);margin-top:.2rem}
+
+    @media(max-width:768px){
+      .bento{grid-template-columns:1fr 1fr}
+      .bento-item.w2{grid-column:span 1}
+      .bento-item.h2{grid-row:span 1}
+    }
+    @media(max-width:480px){.bento{grid-template-columns:1fr}}
+
+    /* ═══════════  ORDER  ═══════════ */
+    #order{background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary))}
+    .order-box{max-width:480px;margin:0 auto;text-align:center}
+    .order-card{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);padding:clamp(1.8rem,5vw,2.8rem) clamp(1.2rem,4vw,2.2rem);
+      backdrop-filter:blur(14px);margin-top:1.8rem;
+      position:relative;overflow:hidden;
+    }
+    .order-card::before{
+      content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+      background:conic-gradient(from 0deg,transparent,rgba(229,62,62,.02) 90deg,transparent 180deg);
+      animation:oGlow 10s linear infinite;
+    }
+    @keyframes oGlow{to{transform:rotate(360deg)}}
+    .order-card>*{position:relative;z-index:1}
+
+    .o-fish{font-size:3rem;margin-bottom:.8rem;display:inline-block;animation:oBob 3s ease-in-out infinite}
+    @keyframes oBob{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-5px) rotate(-2deg)}70%{transform:translateY(3px) rotate(1.5deg)}}
+
+    .o-price{font-family:var(--ff-heading);font-weight:900;font-size:2rem;color:var(--coral)}
+    .o-price small{font-size:.4em;font-weight:400;color:var(--text-muted)}
+    .o-hint{font-size:.78rem;color:var(--text-muted);margin:.3rem 0 1.5rem}
+
+    .qty-row{display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+    .q-btn{
+      width:48px;height:48px;border-radius:50%;
+      border:2px solid var(--border);background:transparent;
+      color:var(--text-primary);font-size:1.3rem;font-weight:700;
+      display:flex;align-items:center;justify-content:center;
+      transition:all .25s var(--ease-spring);
+    }
+    .q-btn:hover{border-color:var(--coral);background:rgba(229,62,62,.06);transform:scale(1.12)}
+    .q-btn:active{transform:scale(.9)}
+    .q-val{width:80px;font-family:var(--ff-heading);font-size:2.4rem;font-weight:900;text-align:center}
+
+    .o-total{font-size:.9rem;color:var(--text-secondary);margin-bottom:1.5rem}
+    .o-total strong{color:var(--coral);font-size:1.2rem}
+
+    .wa-btn{
+      width:100%;padding:.9rem 1.4rem;
+      background:#25d366;color:#fff;
+      font-family:var(--ff-body);font-weight:700;font-size:.95rem;
+      border:none;border-radius:100px;
+      display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+      transition:transform .3s var(--ease-spring),box-shadow .3s;
+    }
+    .wa-btn:hover{transform:scale(1.04);box-shadow:0 10px 32px rgba(37,211,102,.3)}
+    .wa-btn svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+
+    .msg-prev{
+      background:rgba(0,0,0,.2);border-radius:var(--radius-sm);
+      padding:.9rem 1rem;margin-top:1.2rem;text-align:left;
+      font-family:var(--ff-mono);font-size:.68rem;color:var(--text-muted);
+      line-height:1.8;border:1px solid var(--border);
+    }
+    .msg-prev .lbl{color:var(--coral);font-weight:700;display:block;margin-bottom:.3rem}
+    @media(max-width:768px){.msg-prev{display:none}}
+
+    .o-note{font-size:.68rem;color:var(--text-muted);margin-top:1.2rem;line-height:1.8}
+    .o-note strong{color:var(--coral)}
+
+    /* ═══════════  FOOTER  ═══════════ */
+    footer{
+      background:rgba(8,14,10,.95);border-top:1px solid var(--border);
+      padding:clamp(2.5rem,5vw,4rem) var(--section-px) 1.2rem;
+    }
+    .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:clamp(1.5rem,3vw,3rem);max-width:var(--max-w);margin:0 auto}
+    .f-brand h3{font-family:var(--ff-heading);font-weight:800;font-size:1.3rem;color:var(--coral);margin-bottom:.5rem}
+    .f-brand p{color:var(--text-secondary);font-size:.85rem;max-width:320px;line-height:1.7}
+    .f-ml{font-family:var(--ff-ml);color:var(--cyan);font-size:.95rem;margin-top:.8rem}
+    .f-col h4{font-family:var(--ff-mono);font-size:.65rem;color:var(--coral);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.8rem}
+    .f-col ul{list-style:none}
+    .f-col li{margin-bottom:.4rem}
+    .f-col a{color:var(--text-secondary);text-decoration:none;font-size:.85rem;transition:color .25s}
+    .f-col a:hover{color:var(--coral)}
+    .f-bottom{
+      max-width:var(--max-w);margin:2rem auto 0;padding-top:1rem;
+      border-top:1px solid var(--border);
+      display:flex;justify-content:space-between;
+      font-size:.68rem;color:var(--text-muted);opacity:.5;
+    }
+    @media(max-width:768px){
+      .f-grid{grid-template-columns:1fr}
+      .f-bottom{flex-direction:column;gap:.2rem;text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient"></div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="ld-icon">🐟</div>
+    <div class="ld-text">Preparing the waters...</div>
+    <div class="ld-bar"><div class="ld-fill" id="ldFill"></div></div>
+  </div>
+
+  <!-- CURSOR -->
+  <div id="cRing"></div>
+  <div id="cDot"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="n-brand">Varal <span class="ml">വരാൽ</span></a>
+    <ul class="n-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Why Us</a></li>
+      <li><a href="#steps">How</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+    <a href="#order" class="n-cta">Order Now 🐟</a>
+    <button class="n-ham" id="ham" aria-label="Menu">☰</button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mob-menu" id="mobMenu">
+    <button class="mob-close" id="mobClose" aria-label="Close">✕</button>
+    <a href="#about" class="ml">About</a>
+    <a href="#features" class="ml">Why Us</a>
+    <a href="#steps" class="ml">How It Works</a>
+    <a href="#gallery" class="ml">Gallery</a>
+    <a href="#order" class="ml" style="color:var(--coral)">Order Now</a>
+  </div>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section id="hero">
+    <canvas id="fishCanvas"></canvas>
+    <div class="hero-grad"></div>
+    <div class="hero-vig"></div>
+    <div class="hero-inner">
+      <div class="hero-badge"><span class="pulse"></span> Farm-Raised in Kerala</div>
+      <h1 class="hero-h1">
+        Live <span class="accent">Varal</span> Fish
+        <span class="ml">കേരളത്തിന്റെ വരാൽ മീൻ</span>
+      </h1>
+      <p class="hero-p">Farm-raised snakehead, delivered alive. The prized Varal — grown in Kerala's clean waters, straight to your doorstep. ₹120 per piece.</p>
+      <div class="hero-btns">
+        <a href="#order" class="btn-coral">Order via WhatsApp 💬</a>
+        <a href="#about" class="btn-ghost">Learn More</a>
+      </div>
+    </div>
+    <div class="scroll-cue"><div class="pill"></div><span>Scroll</span></div>
+  </section>
+
+  <!-- ═══════ ABOUT ═══════ -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text rv">
+        <div class="sec-tag">// Our Story</div>
+        <h2 class="sec-title">The Pride of <span class="accent">Kerala's Waters</span></h2>
+        <p>The Snakehead — known in Kerala as <strong>Varal (വരാൽ)</strong> — is one of the most sought-after freshwater fish in South India. Prized for its firm, white flesh, minimal bones, and rich medicinal value.</p>
+        <p>We raise our Varal in <strong>clean, controlled freshwater farms</strong> across central Kerala. Sustainable aquaculture — no chemicals, consistent quality, peak flavour every time.</p>
+        <div class="ml-quote">
+          "വരാൽ ഉണ്ടെങ്കിൽ വിരുന്ന് ഒരുക്കാം"
+          <small>If there is Varal, the feast is ready.</small>
+        </div>
+      </div>
+      <div class="stats-grid rv right" style="transition-delay:.12s">
+        <div class="stat"><div class="stat-n" data-target="120" data-prefix="₹">₹0</div><div class="stat-l">Per Piece</div></div>
+        <div class="stat"><div class="stat-n" data-target="24" data-suffix="h">0h</div><div class="stat-l">Live Delivery</div></div>
+        <div class="stat"><div class="stat-n" data-target="100" data-suffix="%">0%</div><div class="stat-l">Farm Raised</div></div>
+        <div class="stat"><div class="stat-n" data-target="3" data-suffix="+">0+</div><div class="stat-l">Happy Customers</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep">✦ ✦ ✦</div>
+
+  <!-- ═══════ FEATURES ═══════ -->
+  <section id="features">
+    <div class="sec-head">
+      <div class="sec-tag rv">// Why Choose Us</div>
+      <h2 class="sec-title rv" style="transition-delay:.06s">What Makes Our <span class="accent">Varal</span> Special</h2>
+      <p class="sec-sub rv" style="transition-delay:.12s">Farm-raised with care. Delivered with pride.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat rv"><div class="feat-ico">🌿</div><h3>Sustainable Farming</h3><p>Raised in clean freshwater ponds with natural feed. No antibiotics, no growth hormones — ethical aquaculture.</p></div>
+      <div class="feat rv" style="transition-delay:.06s"><div class="feat-ico">❤️</div><h3>Delivered Alive</h3><p>Oxygen-packed live transport ensures your Varal arrives swimming. Peak freshness guaranteed.</p></div>
+      <div class="feat rv" style="transition-delay:.12s"><div class="feat-ico">💪</div><h3>Medicinal Value</h3><p>Traditionally used in post-surgery recovery diets. Rich in protein, low in fat — nature's healing food.</p></div>
+      <div class="feat rv" style="transition-delay:.18s"><div class="feat-ico">🍛</div><h3>Perfect for Curry</h3><p>Firm flesh holds beautifully in traditional Varal Curry, Varal Fry, and medicinal broths.</p></div>
+      <div class="feat rv" style="transition-delay:.24s"><div class="feat-ico">⚡</div><h3>WhatsApp Ordering</h3><p>No apps, no accounts. Tap, pick quantity, share location — your order goes straight to us.</p></div>
+      <div class="feat rv" style="transition-delay:.3s"><div class="feat-ico">📍</div><h3>GPS Delivery</h3><p>Share your live location and we navigate to you. Anywhere in Kerala, to your pin.</p></div>
+    </div>
+  </section>
+
+  <div class="sep">✦ ✦ ✦</div>
+
+  <!-- ═══════ STEPS ═══════ -->
+  <section id="steps">
+    <div class="sec-head">
+      <div class="sec-tag rv">// How It Works</div>
+      <h2 class="sec-title rv">Three Steps to <span class="accent">Fresh Varal</span></h2>
+    </div>
+    <div class="steps-box">
+      <div class="steps-rail"><div class="steps-fill" id="stepsFill"></div></div>
+      <div class="stp rv" data-step="1">
+        <div class="stp-n">1</div>
+        <div class="stp-body"><h3>Choose Quantity</h3><p>Each fish is ~500g–1kg. Perfect for a family curry serving 4–6.</p></div>
+      </div>
+      <div class="stp rv" data-step="2" style="transition-delay:.1s">
+        <div class="stp-n">2</div>
+        <div class="stp-body"><h3>Send on WhatsApp</h3><p>Auto-composed message with quantity + GPS. Just hit send.</p></div>
+      </div>
+      <div class="stp rv" data-step="3" style="transition-delay:.2s">
+        <div class="stp-n">3</div>
+        <div class="stp-body"><h3>Receive Alive</h3><p>Arrives swimming in 24h. Pay on delivery. Cook the freshest curry ever.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep">✦ ✦ ✦</div>
+
+  <!-- ═══════ GALLERY ═══════ -->
+  <section id="gallery">
+    <div class="sec-head">
+      <div class="sec-tag rv">// Gallery</div>
+      <h2 class="sec-title rv">Meet the <span class="accent">Varal</span></h2>
+    </div>
+    <div class="bento">
+      <div class="bento-item w2 rv"><div class="emoji">🐟</div><h4>The Mighty Varal</h4><p>Spotted Snakehead — King of Kerala freshwater</p></div>
+      <div class="bento-item h2 rv" style="transition-delay:.06s"><div class="emoji">🌾</div><h4>Our Farms</h4><p>Clean freshwater ponds</p></div>
+      <div class="bento-item rv" style="transition-delay:.12s"><div class="emoji">🍛</div><h4>Varal Curry</h4><p>Traditional Kerala style</p></div>
+      <div class="bento-item rv" style="transition-delay:.18s"><div class="emoji">🚚</div><h4>Live Transport</h4><p>Oxygen-packed delivery</p></div>
+      <div class="bento-item rv" style="transition-delay:.24s"><div class="emoji">💊</div><h4>Healing Food</h4><p>Post-surgery recovery</p></div>
+      <div class="bento-item w2 rv" style="transition-delay:.3s"><div class="emoji">🥘</div><h4>Farm to Table</h4><p>Fresh, alive, and ready in 24 hours</p></div>
+    </div>
+  </section>
+
+  <div class="sep">✦ ✦ ✦</div>
+
+  <!-- ═══════ ORDER ═══════ -->
+  <section id="order">
+    <div class="order-box">
+      <div class="sec-tag rv">// Order Now</div>
+      <h2 class="sec-title rv">Get Your <span class="accent">Live Varal</span></h2>
+      <div class="order-card rv up-scale" style="transition-delay:.12s">
+        <div class="o-fish">🐟</div>
+        <div class="o-price">₹120 <small>/ piece</small></div>
+        <div class="o-hint">~500g–1kg each • Farm-raised • Delivered alive</div>
+        <div class="qty-row">
+          <button class="q-btn" id="qM" aria-label="Less">−</button>
+          <div class="q-val" id="qV">1</div>
+          <button class="q-btn" id="qP" aria-label="More">+</button>
+        </div>
+        <div class="o-total">Total: <strong id="oTot">₹120</strong></div>
+        <button class="wa-btn" id="waBtn">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send Order on WhatsApp
+        </button>
+        <div class="msg-prev">
+          <span class="lbl">📱 Message Preview:</span>
+          <span id="msgP">Hi! I want to order 1 live Varal fish (വരാൽ 🐟). Total: ₹120</span>
+        </div>
+        <div class="o-note">📞 Or call: <strong>+91 XXXXX XXXXX</strong><br>Cash on delivery • Within 24h • Anywhere in Kerala</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="f-grid">
+      <div class="f-brand">
+        <h3>Kerala Live Varal</h3>
+        <p>Farm-raised snakehead delivered alive from Kerala's clean freshwater farms. The freshest Varal — straight to your kitchen.</p>
+        <div class="f-ml">കേരളത്തിന്റെ സ്വന്തം വരാൽ 🐟</div>
+      </div>
+      <div class="f-col"><h4>Navigate</h4><ul><li><a href="#about">About</a></li><li><a href="#features">Why Us</a></li><li><a href="#steps">How</a></li><li><a href="#order">Order</a></li></ul></div>
+      <div class="f-col"><h4>Contact</h4><ul><li><a href="#">WhatsApp</a></li><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="mailto:info@keralavaral.com">Email</a></li></ul></div>
+    </div>
+    <div class="f-bottom"><span>© 2026 Kerala Live Varal</span><span>Made with 🐟 in Kerala</span></div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════
+       THREE.JS — GPU SWIMMING FISH
+  ═══════════════════════════════════════════════════ -->
+  <script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
+  }}
+  </script>
+  <script type="module">
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+  /* ══════ CONFIG ══════ */
+  const WA_NUM = '91XXXXXXXXXX';
+  const PRICE = 120;
+  const GLB_PATH = 'cc0___spotted_snakehead_channa_argus.glb';
+
+  /* ══════ STATE ══════ */
+  let qty = 1, mx = 0, my = 0, lastSy = 0;
+
+  /* ══════════════════════════════════════════════
+     RENDERER + SCENE
+  ══════════════════════════════════════════════ */
+  const cvs = document.getElementById('fishCanvas');
+  const R = new THREE.WebGLRenderer({ canvas: cvs, antialias: true, alpha: false, powerPreference: 'high-performance' });
+  R.setSize(innerWidth, innerHeight);
+  R.setPixelRatio(Math.min(devicePixelRatio, 2));
+  R.toneMapping = THREE.ACESFilmicToneMapping;
+  R.toneMappingExposure = 1.05;
+  R.outputColorSpace = THREE.SRGBColorSpace;
+
+  const S = new THREE.Scene();
+  S.background = new THREE.Color(0x080e0a);
+  S.fog = new THREE.FogExp2(0x080e0a, 0.032);
+
+  const cam = new THREE.PerspectiveCamera(48, innerWidth / innerHeight, 0.1, 80);
+  cam.position.set(0, 0.5, 5.5);
+
+  /* ── Lights ── */
+  S.add(new THREE.AmbientLight(0x5588aa, 0.55));
+  const sun = new THREE.DirectionalLight(0xffeedd, 0.95);
+  sun.position.set(4, 7, 5); S.add(sun);
+
+  const cL1 = new THREE.PointLight(0x22c55e, 0.9, 18);
+  cL1.position.set(-4, 3, 1); S.add(cL1);
+  const cL2 = new THREE.PointLight(0xe53e3e, 0.55, 14);
+  cL2.position.set(4, -1, -3); S.add(cL2);
+
+  /* God rays */
+  const rayMat = new THREE.MeshBasicMaterial({ color: 0x88bbdd, transparent: true, opacity: 0.012, side: THREE.DoubleSide, depthWrite: false });
+  const rGeo = new THREE.PlaneGeometry(14, 20);
+  const r1 = new THREE.Mesh(rGeo, rayMat); r1.position.set(2, 5, -6); r1.rotation.set(-.4, .3, .15); S.add(r1);
+  const r2 = r1.clone(); r2.material = rayMat.clone(); r2.material.opacity = 0.008;
+  r2.position.set(-3, 6, -5); r2.rotation.set(-.3, -.2, -.1); S.add(r2);
+
+  /* ── Particles: bubbles ── */
+  const BN = 90;
+  const bGeo = new THREE.BufferGeometry();
+  const bP = new Float32Array(BN*3), bS = new Float32Array(BN), bPh = new Float32Array(BN);
+  for(let i=0;i<BN;i++){
+    bP[i*3]=(Math.random()-.5)*22;bP[i*3+1]=(Math.random()-.5)*14;bP[i*3+2]=(Math.random()-.5)*22;
+    bS[i]=.003+Math.random()*.013;bPh[i]=Math.random()*Math.PI*2;
+  }
+  bGeo.setAttribute('position',new THREE.BufferAttribute(bP,3));
+  S.add(new THREE.Points(bGeo,new THREE.PointsMaterial({color:0x88ccdd,size:.05,transparent:true,opacity:.45,sizeAttenuation:true,depthWrite:false})));
+
+  /* ── Dust motes ── */
+  const DN=50,dGeo=new THREE.BufferGeometry(),dP=new Float32Array(DN*3);
+  for(let i=0;i<DN;i++){dP[i*3]=(Math.random()-.5)*16;dP[i*3+1]=(Math.random()-.5)*10;dP[i*3+2]=(Math.random()-.5)*16}
+  dGeo.setAttribute('position',new THREE.BufferAttribute(dP,3));
+  S.add(new THREE.Points(dGeo,new THREE.PointsMaterial({color:0x22c55e,size:.025,transparent:true,opacity:.2,sizeAttenuation:true,depthWrite:false})));
+
+  /* ══════════════════════════════════════════════
+     GPU SWIM SHADER — injected via onBeforeCompile
+
+     This adds a sinusoidal wave deformation along the
+     fish body axis in the vertex shader. Only updates
+     one uniform (uTime) per frame — zero CPU vertex work.
+     Works with any mesh, any vertex count, 60fps.
+  ══════════════════════════════════════════════ */
+  const swimUniforms = {
+    uTime: { value: 0 },
+    uFishMinX: { value: -1 },
+    uFishMaxX: { value: 1 },
+  };
+
+  function injectSwimShader(material) {
+    material.onBeforeCompile = (shader) => {
+      shader.uniforms.uTime = swimUniforms.uTime;
+      shader.uniforms.uFishMinX = swimUniforms.uFishMinX;
+      shader.uniforms.uFishMaxX = swimUniforms.uFishMaxX;
+
+      // Prepend uniforms to vertex shader
+      shader.vertexShader = `
+        uniform float uTime;
+        uniform float uFishMinX;
+        uniform float uFishMaxX;
+      ` + shader.vertexShader;
+
+      // Inject swim deformation after computing 'transformed' position
+      shader.vertexShader = shader.vertexShader.replace(
+        '#include <begin_vertex>',
+        `#include <begin_vertex>
+
+        // Normalize position along fish body (0=head, 1=tail)
+        float fishRange = uFishMaxX - uFishMinX;
+        float bodyT = clamp((transformed.x - uFishMinX) / max(fishRange, 0.001), 0.0, 1.0);
+
+        // Amplitude increases quadratically toward the tail
+        float amp = 0.12 * bodyT * bodyT;
+
+        // Sinusoidal wave propagating from head to tail
+        float wave = sin(bodyT * 6.28318 * 1.5 - uTime * 4.5) * amp;
+
+        // Apply lateral displacement (Z axis)
+        transformed.z += wave;
+
+        // Subtle vertical wobble
+        transformed.y += wave * 0.12;
+        `
+      );
+    };
+    material.needsUpdate = true;
+  }
+
+  /* ══════════════════════════════════════════════
+     LOAD GLB MODEL
+  ══════════════════════════════════════════════ */
+  let fishGroup = new THREE.Group();
+  S.add(fishGroup);
+  let fishLoaded = false;
+
+  const ldFill = document.getElementById('ldFill');
+  let prog = 0;
+  const pI = setInterval(() => { if(prog<50){prog+=Math.random()*6;ldFill.style.width=Math.min(prog,50)+'%'} }, 220);
+
+  new GLTFLoader().load(
+    GLB_PATH,
+    (gltf) => {
+      clearInterval(pI);
+      ldFill.style.width = '100%';
+
+      const model = gltf.scene;
+
+      // Scale
+      const box = new THREE.Box3().setFromObject(model);
+      const sz = box.getSize(new THREE.Vector3());
+      const sc = 3 / Math.max(sz.x, sz.y, sz.z);
+      model.scale.setScalar(sc);
+
+      // Center
+      const box2 = new THREE.Box3().setFromObject(model);
+      const ctr = box2.getCenter(new THREE.Vector3());
+      model.position.sub(ctr);
+
+      // Compute body extent for shader
+      const box3 = new THREE.Box3().setFromObject(model);
+      swimUniforms.uFishMinX.value = box3.min.x;
+      swimUniforms.uFishMaxX.value = box3.max.x;
+
+      // Inject swim shader into all materials
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          if (Array.isArray(child.material)) {
+            child.material.forEach(m => injectSwimShader(m));
+          } else {
+            injectSwimShader(child.material);
+          }
+        }
+      });
+
+      fishGroup.add(model);
+      fishLoaded = true;
+
+      setTimeout(() => document.getElementById('loader').classList.add('done'), 450);
+    },
+    (xhr) => {
+      if(xhr.total){const p=50+(xhr.loaded/xhr.total)*50;prog=p;ldFill.style.width=p+'%'}
+    },
+    (err) => {
+      clearInterval(pI);
+      ldFill.style.width = '100%';
+      console.warn('GLB failed, procedural fallback:', err);
+      buildFallback();
+      setTimeout(() => document.getElementById('loader').classList.add('done'), 450);
+    }
+  );
+
+  function buildFallback() {
+    const bodyG = new THREE.CapsuleGeometry(.3, 2, 12, 24);
+    const bodyM = new THREE.MeshStandardMaterial({color:0x3a6b52,roughness:.35,metalness:.05});
+    injectSwimShader(bodyM);
+    const body = new THREE.Mesh(bodyG, bodyM);
+    body.rotation.z = Math.PI/2;
+
+    const tailG = new THREE.ConeGeometry(.4, .9, 8);
+    const tailM = new THREE.MeshStandardMaterial({color:0x2d5a42,roughness:.4});
+    injectSwimShader(tailM);
+    const tail = new THREE.Mesh(tailG, tailM);
+    tail.position.x = -1.6; tail.rotation.z = -Math.PI/2;
+
+    const eG = new THREE.SphereGeometry(.06,8,8);
+    const eM = new THREE.MeshStandardMaterial({color:0xffd700,emissive:0xffa500,emissiveIntensity:.4});
+    const eL = new THREE.Mesh(eG,eM); eL.position.set(.85,.13,.24);
+    const eR = eL.clone(); eR.position.z = -.24;
+
+    const g = new THREE.Group();
+    g.add(body, tail, eL, eR);
+    fishGroup.add(g);
+
+    swimUniforms.uFishMinX.value = -2;
+    swimUniforms.uFishMaxX.value = 1;
+    fishLoaded = true;
+  }
+
+  /* ══════════════════════════════════════════════
+     ANIMATION LOOP
+  ══════════════════════════════════════════════ */
+  const clk = new THREE.Clock();
+
+  function loop() {
+    requestAnimationFrame(loop);
+    const t = clk.getElapsedTime();
+
+    // Update swim uniform
+    swimUniforms.uTime.value = t;
+
+    // Fish path — figure-8 Lissajous
+    if (fishLoaded) {
+      const px = Math.sin(t * 0.22) * 2.2;
+      const pz = Math.sin(t * 0.11) * 1.3;
+      const py = Math.sin(t * 0.16) * 0.3 + 0.15;
+      fishGroup.position.set(px, py, pz);
+
+      const dx = Math.cos(t * 0.22) * 0.22 * 2.2;
+      const dz = Math.cos(t * 0.11) * 0.11 * 1.3;
+      fishGroup.rotation.y = Math.atan2(dx, dz);
+      fishGroup.rotation.z = -dx * 0.1;
+      fishGroup.rotation.x = Math.sin(t * 0.25) * 0.015;
+    }
+
+    // Camera mouse parallax
+    cam.position.x += (mx * 1.5 - cam.position.x) * 0.025;
+    cam.position.y += (0.5 + my * 0.7 - cam.position.y) * 0.025;
+    cam.lookAt(fishGroup.position);
+
+    // Caustic shimmer
+    cL1.intensity = .5 + Math.sin(t*1.6)*.4;
+    cL1.position.x = Math.sin(t*.55)*4.5;
+    cL2.intensity = .3 + Math.sin(t*1.2+1)*.25;
+    cL2.position.z = Math.cos(t*.45)*4;
+
+    // God ray sway
+    r1.rotation.z = .15 + Math.sin(t*.18)*.04;
+    r2.rotation.z = -.1 + Math.sin(t*.13+1)*.035;
+
+    // Bubbles
+    const bp = bGeo.attributes.position.array;
+    for(let i=0;i<BN;i++){
+      bp[i*3+1]+=bS[i];
+      bp[i*3]+=Math.sin(t*.4+bPh[i])*.0015;
+      if(bp[i*3+1]>7){bp[i*3+1]=-7;bp[i*3]=(Math.random()-.5)*22;bp[i*3+2]=(Math.random()-.5)*22}
+    }
+    bGeo.attributes.position.needsUpdate = true;
+
+    // Dust
+    const dp = dGeo.attributes.position.array;
+    for(let i=0;i<DN;i++){dp[i*3]+=Math.sin(t*.25+i)*.0008;dp[i*3+1]+=.0008;if(dp[i*3+1]>5)dp[i*3+1]=-5}
+    dGeo.attributes.position.needsUpdate = true;
+
+    R.render(S, cam);
+  }
+  loop();
+
+  addEventListener('resize', () => {
+    cam.aspect = innerWidth/innerHeight;
+    cam.updateProjectionMatrix();
+    R.setSize(innerWidth, innerHeight);
+  });
+
+  /* ══════════════════════════════════════════════
+     INTERACTIONS
+  ══════════════════════════════════════════════ */
+  // Custom cursor
+  const cR = document.getElementById('cRing'), cD = document.getElementById('cDot');
+  let curX=0,curY=0,dotX=0,dotY=0;
+
+  document.addEventListener('mousemove', e => {
+    mx = (e.clientX/innerWidth - .5)*2;
+    my = -(e.clientY/innerHeight - .5)*2;
+    curX = e.clientX; curY = e.clientY;
+  });
+
+  // Smooth cursor follow
+  function cursorLoop() {
+    requestAnimationFrame(cursorLoop);
+    dotX += (curX - dotX) * .15;
+    dotY += (curY - dotY) * .15;
+    if(cR){cR.style.left=dotX+'px';cR.style.top=dotY+'px'}
+    if(cD){cD.style.left=curX+'px';cD.style.top=curY+'px'}
+  }
+  cursorLoop();
+
+  // Hover effect
+  document.querySelectorAll('a,button,.feat,.stat,.bento-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cR && cR.classList.add('big'));
+    el.addEventListener('mouseleave', () => cR && cR.classList.remove('big'));
+  });
+
+  // Feature card mouse glow
+  document.querySelectorAll('.feat').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left)/r.width*100)+'%');
+      card.style.setProperty('--my', ((e.clientY - r.top)/r.height*100)+'%');
+    });
+  });
+
+  // Gyroscope (mobile)
+  if(window.DeviceOrientationEvent){
+    addEventListener('deviceorientation', e => {
+      if(e.gamma!==null){mx=e.gamma/35;my=(e.beta/35)-1}
+    });
+  }
+
+  // Click ripple
+  document.addEventListener('click', e => {
+    for(let i=0;i<2;i++){
+      const d = document.createElement('div');
+      d.className='ripple';d.style.left=e.clientX+'px';d.style.top=e.clientY+'px';
+      if(i)d.style.animationDelay='.08s';
+      document.body.appendChild(d);setTimeout(()=>d.remove(),900);
+    }
+  });
+
+  /* ══════════════════════════════════════════════
+     SCROLL — Reveals, Nav, Steps, Counters
+  ══════════════════════════════════════════════ */
+  const revIO = new IntersectionObserver(es => {
+    es.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis') });
+  }, { threshold: .1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.rv').forEach(el => revIO.observe(el));
+
+  // Counter animation
+  const counterIO = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if(!e.isIntersecting) return;
+      const el = e.target;
+      if(el.dataset.counted) return;
+      el.dataset.counted = '1';
+      const target = +el.dataset.target;
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const dur = 1500;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start)/dur, 1);
+        const ease = 1 - Math.pow(1-p, 3);
+        el.textContent = prefix + Math.round(target * ease) + suffix;
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: .5 });
+  document.querySelectorAll('.stat-n[data-target]').forEach(el => counterIO.observe(el));
+
+  const navE = document.getElementById('nav');
+  addEventListener('scroll', () => {
+    const sy = scrollY;
+    if(sy > lastSy && sy > 80) navE.classList.add('hide'); else navE.classList.remove('hide');
+    navE.classList.toggle('solid', sy > 40);
+    lastSy = sy;
+
+    // Steps progress
+    const stEl = document.getElementById('steps');
+    if(stEl){
+      const r = stEl.getBoundingClientRect();
+      const p = Math.max(0,Math.min(1,(innerHeight-r.top)/(r.height+innerHeight*.35)));
+      document.getElementById('stepsFill').style.height = (p*100)+'%';
+      document.querySelectorAll('.stp').forEach(s => {
+        if(s.getBoundingClientRect().top < innerHeight*.6) s.classList.add('on');
+      });
+    }
+  }, { passive: true });
+
+  /* ══════════════════════════════════════════════
+     MOBILE NAV
+  ══════════════════════════════════════════════ */
+  const mm = document.getElementById('mobMenu');
+  document.getElementById('ham').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('mobClose').addEventListener('click', () => mm.classList.remove('open'));
+  document.querySelectorAll('#mobMenu a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  /* ══════════════════════════════════════════════
+     WHATSAPP ORDER
+  ══════════════════════════════════════════════ */
+  const qV = document.getElementById('qV');
+  const oT = document.getElementById('oTot');
+  const mP = document.getElementById('msgP');
+
+  function updOrder() {
+    qV.textContent = qty;
+    const tot = qty*PRICE;
+    oT.textContent = '₹' + tot.toLocaleString('en-IN');
+    mP.textContent = `Hi! I want to order ${qty} live Varal fish (വരാൽ 🐟). Total: ₹${tot}`;
+  }
+
+  document.getElementById('qM').addEventListener('click', () => { if(qty>1){qty--;updOrder()} });
+  document.getElementById('qP').addEventListener('click', () => { if(qty<99){qty++;updOrder()} });
+
+  document.getElementById('waBtn').addEventListener('click', () => {
+    const tot = qty*PRICE;
+    const base = `Hi! I want to order ${qty} live Varal fish (വരാൽ 🐟).\nTotal: ₹${tot}`;
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          const la=pos.coords.latitude.toFixed(6),lo=pos.coords.longitude.toFixed(6);
+          go(`${base}\n📍 My location: https://maps.google.com/?q=${la},${lo}`);
+        },
+        () => go(base+'\n(Location not shared)'),
+        {enableHighAccuracy:true,timeout:8000}
+      );
+    } else go(base);
+  });
+
+  function go(msg){window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`,'_blank')}
+
+  </script>
+</body>
+</html>
