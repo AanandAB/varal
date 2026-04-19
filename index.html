@@ -402,7 +402,7 @@
   </style>
 </head>
 <body>
-  <video id="bgVideo" src="bg-video.mp4" autoplay loop muted playsinline style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0.4;pointer-events:none;"></video>
+  <video id="bgVideo" src="bg-video.mp4" muted playsinline preload="auto" style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0.4;pointer-events:none;"></video>
   <div class="ambient"></div>
 
   <!-- NAV -->
@@ -735,6 +735,31 @@
   document.getElementById('ham').addEventListener('click', () => mm.classList.add('open'));
   document.getElementById('mobClose').addEventListener('click', () => mm.classList.remove('open'));
   document.querySelectorAll('#mobMenu a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  /* ══════════════════════════════════════════════
+     VIDEO SCROLL SCRUBBING
+  ══════════════════════════════════════════════ */
+  const bgVid = document.getElementById('bgVideo');
+  let targetTime = 0;
+  let currVidTime = 0;
+
+  bgVid.addEventListener('loadedmetadata', () => {
+    bgVid.pause();
+    function scrubLoop() {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const frac = maxScroll > 0 ? (window.scrollY / maxScroll) : 0;
+      targetTime = frac * bgVid.duration;
+
+      currVidTime += (targetTime - currVidTime) * 0.1;
+
+      if (Math.abs(bgVid.currentTime - currVidTime) > 0.005) {
+        bgVid.currentTime = currVidTime;
+      }
+      
+      requestAnimationFrame(scrubLoop);
+    }
+    requestAnimationFrame(scrubLoop);
+  });
 
   /* ══════════════════════════════════════════════
      WHATSAPP ORDER
