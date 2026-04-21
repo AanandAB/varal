@@ -188,7 +188,14 @@
     .about-quote .text-ml { font-size: 1.4rem; color: var(--text-main); margin-bottom: 0.4rem; display: block; }
     .about-quote span { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
     
-    @media (max-width: 950px) { .about-grid { grid-template-columns: 1fr; } .about-visual, .about-content { text-align: center; } .about-quote { padding-left: 0; border-left: none; border-top: 3px solid var(--primary); padding-top: 1.5rem; } }
+    @media (max-width: 950px) { .about-grid { grid-template-columns: 1fr; } .about-visual, .about-content { text-align: center; } .about-quote { padding-left: 0; border-left: none; border-top: 3px solid var(--primary); padding-top: 1.5rem; text-align: left; } }
+    @media (max-width: 768px) {
+      section { padding: 4rem 0; }
+      #hero { padding-top: 8rem; min-height: auto; padding-bottom: 2rem; }
+      .hero-title { font-size: 2.8rem; }
+      .stats-wrapper { margin-top: 2rem; }
+      .checkout-hub { padding: 2rem 1rem; }
+    }
 
     /* ════ FEATURES SECTION ════ */
     #features { background: linear-gradient(180deg, transparent, rgba(14,26,18,0.3)); }
@@ -377,7 +384,7 @@
         <span class="section-label">The Heritage</span>
         <h2 class="section-title">The Pride of <br><span class="gradient-text">Kerala's Waters</span></h2>
         <p>The Snakehead — traditionally known as <strong>Varal (വരാൽ)</strong> — is the most undisputed king of freshwater fish in South India. It is highly prized for its firm, bone-free white flesh and immense medicinal properties.</p>
-        <p>We breed and raise our Varal in pristine, highly oxygenated freshwater ponds using strictly organic feed. No antibiotics. No chemical treatments. Just the purest taste of Kerala.</p>
+        <p>We breed and raise our Varal (measuring 10 to 25 cm) in pristine, highly oxygenated freshwater ponds using strictly organic feed. No antibiotics. No chemical treatments. Just the purest taste of Kerala.</p>
         <div class="about-quote">
           <span class="text-ml">"വരാൽ ഉണ്ടെങ്കിൽ വിരുന്ന് ഒരുക്കാം"</span>
           <span>When there is Varal, the royal feast is ready.</span>
@@ -461,7 +468,7 @@
         <h2 class="section-title" style="margin-bottom:2rem;">Secure Your <span class="gradient-text-primary">Catch</span></h2>
         
         <div class="price-tag">₹120 <span>/ PIECE</span></div>
-        <div class="checkout-details">Live Varal • Cash on delivery • 24h ETA</div>
+        <div class="checkout-details">Live Varal (10 - 25 cm) • Cash on delivery • 24h ETA</div>
         
         <div class="qty-ctrl">
           <button class="qty-btn" id="btnMinus" aria-label="Decrease"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
@@ -510,6 +517,8 @@
   </footer>
 
   <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script>
     /* ══════ CONFIG ══════ */
     const WA_NUM = '917034026295';
@@ -529,7 +538,7 @@
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    // We remove standard raf because GSAP will drive it.
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -541,11 +550,42 @@
 
     /* ══════ INTERACTIONS ══════ */
     // Scroll effects for nav & revealed elements
+    // Sync GSAP with Lenis
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
     const navE = document.getElementById('nav');
     lenis.on('scroll', (e) => {
       navE.classList.toggle('scrolled', e.scroll > 50);
     });
 
+    // Parallax Scroll Animations using GSAP ScrollTrigger
+    gsap.to(".hero-visual", {
+      y: 120,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#about",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    }).to(".about-visual", { y: -60, ease: "none" }, 0)
+      .to(".about-visual img", { scale: 1.15, ease: "none" }, 0);
+
+    // Fade-in Reveal
     const revObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if(e.isIntersecting) {
